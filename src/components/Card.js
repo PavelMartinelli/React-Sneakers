@@ -1,24 +1,22 @@
 import React from "react";
-function Card(props){
+function Card({title, price, imageUrl, onFavorite, onPlus}){
     const [isAdded, setIsAdded] = React.useState(false);
 
-    React.useEffect(() => {
-        console.log("Изменилась переменная!")
-    }, [isAdded])
     const onClickPlus = () =>{
+        onPlus({title, price, imageUrl});
         setIsAdded(!isAdded);
     }
     return (
-        <div className="card">
-            <div className="favorite" onClick={props.onFavorite}>
+        <div className="card mb-30">
+            <div className="favorite" onClick={onFavorite}>
                 <img src="/img/heart-unliked.svg"/>
             </div>
-            <img height={112} width={133} src={props.imageUrl}/>
-            <h5>{props.title}</h5>
+            <img height={112} width={133} src={imageUrl}/>
+            <h5>{title}</h5>
             <div className="d-flex justify-between align-center">
                 <div className={"d-flex flex-column"}>
                     <span>Цена:</span>
-                    <b>{props.price}ч руб.</b>
+                    <b>{price}ч руб.</b>
                 </div>
                 <img className="button"
                      onClick={onClickPlus}
