@@ -22,10 +22,10 @@ function App() {
     const onAddToCart = (obj) => {
         let bFlag = true;
         for(let i = 0; i < cartItems.length; i++) {
-            if (cartItems[i][0] === obj[0]) {
+            if (cartItems[i][0] === obj[0] && cartItems[i][1] === obj[1] && cartItems[i][2] === obj[2]) {
                 bFlag = false
                 setCartItems(prev => prev.filter((c) => {
-                    return c[0] !== obj[0]
+                    return c[0] !== obj[0] && c[1] !== obj[1] && c[2] !== obj[2]
                 }))
                 console.log(11111)
             }
