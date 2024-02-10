@@ -2,7 +2,7 @@ import items from "../items";
 import Card from "../components/Card";
 import React from "react";
 
-function Home() {
+function Home({items, searchValue, setSearchValue, onChangeSearchInput, onAddToFavorites, onAddToCart}) {
     return (
         <div className="content p-40">
             <div className="d-flex mb-40 align-center justify-between">
@@ -20,10 +20,11 @@ function Home() {
                     items.filter((item) => item.title.toLowerCase()
                         .includes(searchValue.toLowerCase()))
                         .map((obj, index) => (
-                            <Card title={obj.title}
+                            <Card id ={obj.id}
+                                  title={obj.title}
                                   price={obj.price}
                                   imageUrl={obj.imageUrl}
-                                  onFavorite={(prod) => onAddToFavorits(prod)}
+                                  onFavorite={(prod) => onAddToFavorites(prod)}
                                   onPlus={(prod) => onAddToCart(prod)}
                                   key={index}/>
                         ))
@@ -32,3 +33,5 @@ function Home() {
         </div>
 )
 }
+
+export default Home
