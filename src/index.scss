@@ -74,11 +74,19 @@ header{
   border: 1px solid #F3F3F3;
   border-radius: 10px;
   padding: 0 15px;
+  position: relative;
   input {
     border: 0;
     padding: 12px;
     font-size: 16px;
     width: 200px;
+  }
+  .clear{
+    position: absolute;
+    right: 10px;
+    width: 18px;
+    height: 18px;
+    top: 12px;
   }
 }
 
@@ -111,6 +119,36 @@ header{
   flex: 1;
 }
 
+.CartEmpty{
+  text-align: center;
+
+  p{
+    width: 280px;
+    line-height: 24px;
+  }
+  button{
+    width: 100%;
+    background: #9DD558;
+    border-radius: 18px;
+    border: none;
+    height: 50px;
+    color: #fff;
+    font-size: 16px;
+    transition: background 0.2s ease-in-out;
+    &:hover{
+      background: lighten(#9DD558, 5%);
+      cursor: pointer;
+    }
+
+    &:active{
+      background: darken(#9DD558, 15%)
+    }
+  }
+}
+
+.fav{
+  margin-top: 2px;
+}
 .cartTotalBlock{
   div{
     flex: 1;

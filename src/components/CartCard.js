@@ -1,4 +1,4 @@
-function CartCard({title, price, imageUrl} ) {
+function CartCard({id, title, price, imageUrl, onRemoveFromCart} ) {
     return (
         <div className="cartItem d-flex align-center mb-20">
             <img width={70} height={70} src={imageUrl}/>
@@ -6,7 +6,7 @@ function CartCard({title, price, imageUrl} ) {
                 <h5 className="mb-5">{title}</h5>
                 <b>{price} руб.</b>
             </div>
-            <img className="removeBtn" src="/img/btn-remove.svg"/>
+            <img className="removeBtn cu-p" src="/img/btn-remove.svg" onClick={()=> onRemoveFromCart(id)}/>
         </div>
     )
 }
