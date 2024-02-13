@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import {Route, Routes} from "react-router-dom";
-import Card from "./components/Card";
+
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
 import items from "./items";
@@ -20,6 +20,9 @@ function App() {
             .then(res =>{
                 setCartItems(res.data)
             })
+        //for(let i = 0; i <localStorage.length; i++){
+            //setCartItems(prevState => ([...prevState, localStorage.getItem(i)]))
+        //}
         axios.get("https://65c24a59f7e6ea59682b15f1.mockapi.io/favorite")
             .then(res =>{
                 setFavorites(res.data)
@@ -27,19 +30,31 @@ function App() {
     }, [])
 
     const onAddToCart = (obj) => {
-        axios.post("https://65c24a59f7e6ea59682b15f1.mockapi.io/cart", obj)
-        setCartItems(prev => [...prev, obj])
+        if(obj.hasOwnProperty("imageUrl")) {
+            localStorage.removeItem(obj.id)
+            if (cartItems.find(CartObj => CartObj.id === obj.id)) {
+                axios.delete(`https://65c24a59f7e6ea59682b15f1.mockapi.io/favorite/${obj.id}`)
+                    .then(setCartItems((prev) => (prev.filter(item => item.id !== obj.id))))
+                    .catch(err => console.log(`Ошибка: ${err.code}`))
+            } else {
+                axios.post("https://65c24a59f7e6ea59682b15f1.mockapi.io/cart", obj)
+                localStorage.setItem(obj.id, JSON.stringify(obj))
+                setCartItems(prev => [...prev, obj])
+            }
+        }
+
+
     };
 
     const onRemoveFromCart = (id) => {
         setCartItems((prev) => (prev.filter(item => item.id !== id)))
         axios.delete(`https://65c24a59f7e6ea59682b15f1.mockapi.io/cart/${id}`)
             .catch(err => console.log(`Ошибка: ${err}`))
+        localStorage.removeItem(id)
     }
 
     const onAddToFavorits = (obj) => {
         if(obj.hasOwnProperty("imageUrl")) {
-            //console.log(obj)
             if (favorites.find(FavObj => FavObj.id === obj.id)) {
                 axios.delete(`https://65c24a59f7e6ea59682b15f1.mockapi.io/favorite/${obj.id}`)
                     .then(setFavorites((prev) => (prev.filter(item => item.id !== obj.id))))

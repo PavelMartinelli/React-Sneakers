@@ -9,8 +9,12 @@ function Card({id, title, price, imageUrl, onFavorite, onPlus, favorited = false
     }
 
     const onClickFavorite = () => {
-        onFavorite({id, title, price, imageUrl})
-        setIsFavorite(!isFavorite)
+        if(favorited)
+            onFavorite({id, title, price, imageUrl})
+        else{
+            onFavorite({id, title, price, imageUrl})
+            setIsFavorite(!isFavorite)
+        }
     }
     return (
         <div className="card mb-30">

@@ -70,6 +70,12 @@ const arr = [
         "title": "Мужские Кроссовки Nike Kyrie Flytrap IV",
         "price": 11299,
         "imageUrl": "/img/sneakers/12.jpg"
+    },
+    {
+        "id": 13,
+        "title": "Nike Кроссовки Air Max 270 Travis Scott Cactus Trails - Farfetch",
+        "price": 38306,
+        "imageUrl": "/img/sneakers/13.jpg"
     }
 ]
 

@@ -1,4 +1,4 @@
-import items from "../items";
+
 import Card from "../components/Card";
 import React from "react";
 
@@ -9,7 +9,7 @@ function Favorites({items, onAddToCart, onAddToFavorits}) {
                 <h1>{items.length !==0  ? `Мои закладки: Всего ${items.length}` : "Мои закладки" }</h1>
             </div>
             <div className="d-flex flex-wrap">
-                { items.length !=0  &&
+                { items.length !==0  &&
                     items.map((obj, index) => (
                             <Card id ={obj.id}
                                   title={obj.title}
