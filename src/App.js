@@ -32,19 +32,24 @@ function App() {
     };
 
     const onRemoveFromCart = (id) => {
-        axios.delete(`https://65c24a59f7e6ea59682b15f1.mockapi.io/cart/${id}`)
         setCartItems((prev) => (prev.filter(item => item.id !== id)))
+        axios.delete(`https://65c24a59f7e6ea59682b15f1.mockapi.io/cart/${id}`)
+            .catch(err => console.log(`Ошибка: ${err}`))
     }
 
     const onAddToFavorits = (obj) => {
-        if(favorites.find(FavObj => FavObj.id === obj.id)){
-            axios.delete(`https://65c24a59f7e6ea59682b15f1.mockapi.io/favorite/${obj.id}`)
-            setFavorites((prev) => (prev.filter(item => item.id !== obj.id)))
-        }
-        else {
-            axios.post("https://65c24a59f7e6ea59682b15f1.mockapi.io/favorite", obj)
-                .catch(() => console.log("Карточка добавлена в фавориты"))
-            setFavorites(prevState => [...prevState, obj])
+        if(obj.hasOwnProperty("imageUrl")) {
+            //console.log(obj)
+            if (favorites.find(FavObj => FavObj.id === obj.id)) {
+                axios.delete(`https://65c24a59f7e6ea59682b15f1.mockapi.io/favorite/${obj.id}`)
+                    .then(setFavorites((prev) => (prev.filter(item => item.id !== obj.id))))
+                    .catch(err => console.log(`Ошибка: ${err.code}`))
+
+            } else {
+                axios.post("https://65c24a59f7e6ea59682b15f1.mockapi.io/favorite", obj)
+                    .then(setFavorites(prevState => [...prevState, obj]))
+                    .catch(() => console.log("Карточка добавлена в фавориты"))
+            }
         }
     }
 

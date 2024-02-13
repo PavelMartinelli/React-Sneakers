@@ -6,10 +6,10 @@ function Favorites({items, onAddToCart, onAddToFavorits}) {
     return (
         <div className="content p-40">
             <div className="d-flex mb-40 align-center justify-between">
-                <h1>{"Мои закладки"}</h1>
+                <h1>{items.length !==0  ? `Мои закладки: Всего ${items.length}` : "Мои закладки" }</h1>
             </div>
             <div className="d-flex flex-wrap">
-                { items.length !== 0 &&
+                { items.length !=0  &&
                     items.map((obj, index) => (
                             <Card id ={obj.id}
                                   title={obj.title}
