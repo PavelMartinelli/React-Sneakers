@@ -7,6 +7,7 @@ import Drawer from "./components/Drawer";
 import items from "./items";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
+import Orders from "./pages/Orders";
 
 function App() {
     //const [items, setItems] = React.useState([])
@@ -90,6 +91,13 @@ function App() {
                    element={<Favorites items={favorites}
                                        onAddToCart={onAddToCart}
                                        onAddToFavorits={onAddToFavorits}/>} />
+            <Route path="/orders"
+                   element={<Orders items={items}
+                                    searchValue={searchValue}
+                                    setSearchValue={setSearchValue}
+                                    onChangeSearchInput={onChangeSearchInput}
+                                    onAddToFavorites={onAddToFavorits}
+                                    onAddToCart={onAddToCart}/>} />
         </Routes>
     </div>
   );

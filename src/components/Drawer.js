@@ -1,5 +1,8 @@
 import CartCard from "./CartCard";
+import {Link} from "react-router-dom";
+import React from "react";
 function Drawer({ onClose, onRemoveFromCart, items = [] }){
+    const [total, setTotal] = React.useState(0)
     return (
         <div className="overlay">
             <div className="drawer">
@@ -34,7 +37,7 @@ function Drawer({ onClose, onRemoveFromCart, items = [] }){
                                         <li className="d-flex">
                                             <span>Итого:</span>
                                             <div></div>
-                                            <b>21 498 руб. </b>
+                                            <b>121313руб. </b>
                                         </li>
                                         <li className="d-flex">
                                             <span>Налог 5%:</span>
@@ -42,7 +45,9 @@ function Drawer({ onClose, onRemoveFromCart, items = [] }){
                                             <b>1074 pуб. </b>
                                         </li>
                                     </ul>
-                                    <button>Оформить заказ</button>
+                                    <Link to="/orders">
+                                        <button>Оформить заказ</button>
+                                    </Link>
                                 </div>
                             </div>
                         )}
