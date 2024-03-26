@@ -15,6 +15,7 @@ function App() {
     const [favorites, setFavorites] = React.useState([])
     const [cartOpened, setCartOpened] = React.useState(false)
     const [searchValue, setSearchValue] = React.useState("")
+    const [total, setTotal] = React.useState(0);
 
     React.useEffect(() =>{
         axios.get("https://65c24a59f7e6ea59682b15f1.mockapi.io/cart")
@@ -78,7 +79,10 @@ function App() {
         {cartOpened && <Drawer onClose = {() => setCartOpened(false)}
                                items = {cartItems}
                                onRemoveFromCart = {onRemoveFromCart}/>}
-      <Header onOpenCart = {() => setCartOpened(true)}/>
+      <Header onOpenCart = {() => setCartOpened(true)}
+              total = {total}
+              setTotal = {setTotal}
+              cartItems = {cartItems}/>
         <Routes>
             <Route path="/"
                    element={<Home items={items}

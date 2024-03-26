@@ -2,7 +2,14 @@ import CartCard from "./CartCard";
 import {Link} from "react-router-dom";
 import React from "react";
 function Drawer({ onClose, onRemoveFromCart, items = [] }){
-    const [total, setTotal] = React.useState(0)
+    const [total, setTotal] = React.useState(0);
+    React.useEffect(() => {
+        let summ = 0
+        for(let i = 0; i < items.length; i++){
+            summ += items[i].price;
+        }
+        setTotal(summ);
+    }, items)
     return (
         <div className="overlay">
             <div className="drawer">
@@ -37,12 +44,12 @@ function Drawer({ onClose, onRemoveFromCart, items = [] }){
                                         <li className="d-flex">
                                             <span>Итого:</span>
                                             <div></div>
-                                            <b>121313руб. </b>
+                                            <b>{total} руб.</b>
                                         </li>
                                         <li className="d-flex">
                                             <span>Налог 5%:</span>
                                             <div></div>
-                                            <b>1074 pуб. </b>
+                                            <b>{(total/100)*5} руб.</b>
                                         </li>
                                     </ul>
                                     <Link to="/orders">
