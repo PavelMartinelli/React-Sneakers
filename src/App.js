@@ -79,10 +79,7 @@ function App() {
         {cartOpened && <Drawer onClose = {() => setCartOpened(false)}
                                items = {cartItems}
                                onRemoveFromCart = {onRemoveFromCart}/>}
-      <Header onOpenCart = {() => setCartOpened(true)}
-              total = {total}
-              setTotal = {setTotal}
-              cartItems = {cartItems}/>
+      <Header onOpenCart = {() => setCartOpened(true)}/>
         <Routes>
             <Route path="/"
                    element={<Home items={items}
